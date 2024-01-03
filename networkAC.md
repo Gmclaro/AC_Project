@@ -24,7 +24,13 @@ Tags: [[AC]]
 			5. [[#RA1]]
 			6. [[#RA2]]
 - **[[#Configuration]]**
-	- 
+	- [[#NewYork - conf]]
+	- [[#Madrid - conf]]
+	- [[#Lisbon - conf]]
+	- [[#Aveiro - conf]]
+	- [[#RM1 - conf]]
+	- [[#RL2 - conf]]
+	- [[#RA2 - conf]]
 
 # Network
 ---
@@ -137,96 +143,141 @@ Tags: [[AC]]
 ---
 # Configuration
 
-## NewYork
+## NewYork - conf
 
 ```
 !NewYork
 configure terminal
+router ospf 1
+router-id 1.1.1.1
+ip cef
+
 interface f0/0
 ip address 10.0.0.1 255.255.255.248
+ip ospf 1 area 0
 no shutdown
 exit
+
 interface f0/1
 ip address 10.0.0.9 255.255.255.248
+ip ospf 1 area 0
 no shutdown
 exit
+
 interface f1/0
 ip address 10.0.0.129 255.255.255.248
+ip ospf 1 area 0
 no shutdown
 exit
+
 end
 write
 ```
 
-## Madrid
+## Madrid - conf
 ```
 !Madrid
 configure terminal
+router ospf 1
+router-id 1.1.1.2
+ip cef
+
 interface f0/0
 ip address 10.0.0.2 255.255.255.248
+ip ospf 1 area 0
 no shutdown
 exit
+
 interface f0/1
 ip address 10.0.0.17 255.255.255.248
+ip ospf 1 area 0
 no shutdown
 exit
+
 interface f1/1
 ip address 10.0.0.137 255.255.255.248
+ip ospf 1 area 0
 no shutdown
 exit
+
 end
 write
 ```
 
-## Lisbon
+## Lisbon - conf
 ```
 !Lisbon
 configure terminal
+router ospf 1
+router-id 1.1.1.3
+ip cef
+
+
 interface f0/0
 ip address 10.0.0.25 255.255.255.248
+ip ospf 1 area 0
 no shutdown
 exit
+
 interface f0/1
-ip address  10.0.0.1 255.255.255.248
+ip address  10.0.0.10 255.255.255.248
+ip ospf 1 area 0
 no shutdown
 exit
+
 interface f1/0
 ip address 10.0.0.145 255.255.255.248
+ip ospf 1 area 0
 no shutdown
 exit
+
 interface f1/1
 ip address 10.0.0.153 255.255.255.248
+ip ospf 1 area 0
 no shutdown
 exit
+
 end
 write
 ```
 
-## Aveiro
+## Aveiro - conf
 ```
 !Aveiro
 configure terminal
+router ospf 1
+router-id 1.1.1.4
+ip cef
+
 interface f0/0
 ip address 10.0.0.26 255.255.255.248
+ip ospf 1 area 0
 no shutdown
 exit
+
 interface f0/1
 ip address 10.0.0.18 255.255.255.248
+ip ospf 1 area 0
 no shutdown
 exit
+
 interface f1/0
 ip address 10.0.0.161 255.255.255.248
+ip ospf 1 area 0
 no shutdown
 exit
+
 interface f1/1
 ip address 10.0.0.169 255.255.255.248
+ip ospf 1 area 0
 no shutdown
 exit
+
 end
 write
 ```
 
-## RM1
+## RM1 - conf
 ```
 !RM1
 configure terminal
@@ -238,7 +289,7 @@ end
 write
 ```
 
-## RL2
+## RL2 - conf
 ```
 configure terminal
 interface f1/1
@@ -249,7 +300,7 @@ end
 write
 ```
 
-## RA2
+## RA2 - conf
 ```
 !RA2
 configure terminal
@@ -259,4 +310,4 @@ no shutdown
 exit
 end
 write
-	```
+```
