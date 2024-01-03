@@ -1,9 +1,9 @@
-Jan 03 13:56:55.042 HYPERVISOR: Release 0.2.23-amd64/Linux (tag 2023010200)
-Jan 03 13:56:55.042 HYPERVISOR: Started on IP = 127.0.0.1, TCP port = 43013.
-Jan 03 13:56:55.052 HYPERVISOR: exec_cmd: hypervisor version 
-Jan 03 13:56:55.052 HYPERVISOR: exec_cmd: hypervisor working_dir /home/guilherme/AC_Pottente/Projeto/project-files/dynamips 
-Jan 03 13:56:55.052 GENERAL: working_dir=/home/guilherme/AC_Pottente/Projeto/project-files/dynamips
-Jan 03 13:56:55.052 HYPERVISOR: exec_cmd: ethsw create CliA3 
-Jan 03 13:56:57.288 HYPERVISOR: exec_cmd: nio create_udp udp-380dc060-86bf-45de-8c16-4437f94257cc 10057 127.0.0.1 10056 
-Jan 03 13:56:57.288 HYPERVISOR: exec_cmd: ethsw add_nio CliA3 udp-380dc060-86bf-45de-8c16-4437f94257cc 
-Jan 03 13:56:57.300 HYPERVISOR: exec_cmd: ethsw set_access_port CliA3 udp-380dc060-86bf-45de-8c16-4437f94257cc 1 
+Jan 03 17:18:44.703 HYPERVISOR: Release 0.2.23-amd64/Linux (tag 2023010200)
+Jan 03 17:18:44.703 HYPERVISOR: Started on IP = 127.0.0.1, TCP port = 51895.
+Jan 03 17:18:44.712 HYPERVISOR: exec_cmd: hypervisor version 
+Jan 03 17:18:44.713 HYPERVISOR: exec_cmd: hypervisor working_dir /home/guilherme/AC_Pottente/Projeto/project-files/dynamips 
+Jan 03 17:18:44.713 GENERAL: working_dir=/home/guilherme/AC_Pottente/Projeto/project-files/dynamips
+Jan 03 17:18:44.713 HYPERVISOR: exec_cmd: ethsw create CliA3 
+Jan 03 17:18:46.816 HYPERVISOR: exec_cmd: nio create_udp udp-ae28cd25-b783-4c94-9f29-2d5556e0db3f 10057 127.0.0.1 10056 
+Jan 03 17:18:46.817 HYPERVISOR: exec_cmd: ethsw add_nio CliA3 udp-ae28cd25-b783-4c94-9f29-2d5556e0db3f 
+Jan 03 17:18:46.818 HYPERVISOR: exec_cmd: ethsw set_access_port CliA3 udp-ae28cd25-b783-4c94-9f29-2d5556e0db3f 1 

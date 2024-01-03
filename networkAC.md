@@ -151,7 +151,7 @@ ip address 10.0.0.9 255.255.255.248
 no shutdown
 exit
 interface f1/0
-
+ip address 10.0.0.129 255.255.255.248
 no shutdown
 exit
 end
@@ -187,9 +187,11 @@ ip address 10.0.0.25 255.255.255.248
 no shutdown
 exit
 interface f0/1
+ip address  10.0.0.1 255.255.255.248
 no shutdown
 exit
 interface f1/0
+ip address 10.0.0.145 255.255.255.248
 no shutdown
 exit
 interface f1/1
@@ -213,6 +215,7 @@ ip address 10.0.0.18 255.255.255.248
 no shutdown
 exit
 interface f1/0
+ip address 10.0.0.161 255.255.255.248
 no shutdown
 exit
 interface f1/1

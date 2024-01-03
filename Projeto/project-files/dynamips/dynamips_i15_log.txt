@@ -1,9 +1,9 @@
-Jan 03 13:56:55.180 HYPERVISOR: Release 0.2.23-amd64/Linux (tag 2023010200)
-Jan 03 13:56:55.180 HYPERVISOR: Started on IP = 127.0.0.1, TCP port = 51559.
-Jan 03 13:56:55.190 HYPERVISOR: exec_cmd: hypervisor version 
-Jan 03 13:56:55.191 HYPERVISOR: exec_cmd: hypervisor working_dir /home/guilherme/AC_Pottente/Projeto/project-files/dynamips 
-Jan 03 13:56:55.191 GENERAL: working_dir=/home/guilherme/AC_Pottente/Projeto/project-files/dynamips
-Jan 03 13:56:55.191 HYPERVISOR: exec_cmd: ethsw create S1 
-Jan 03 13:56:57.414 HYPERVISOR: exec_cmd: nio create_udp udp-e112f5ba-9dc9-4aaa-b919-5a64e1ec9ce0 10063 127.0.0.1 10062 
-Jan 03 13:56:57.414 HYPERVISOR: exec_cmd: ethsw add_nio S1 udp-e112f5ba-9dc9-4aaa-b919-5a64e1ec9ce0 
-Jan 03 13:56:57.435 HYPERVISOR: exec_cmd: ethsw set_access_port S1 udp-e112f5ba-9dc9-4aaa-b919-5a64e1ec9ce0 1 
+Jan 03 17:18:44.826 HYPERVISOR: Release 0.2.23-amd64/Linux (tag 2023010200)
+Jan 03 17:18:44.826 HYPERVISOR: Started on IP = 127.0.0.1, TCP port = 39081.
+Jan 03 17:18:44.835 HYPERVISOR: exec_cmd: hypervisor version 
+Jan 03 17:18:44.835 HYPERVISOR: exec_cmd: hypervisor working_dir /home/guilherme/AC_Pottente/Projeto/project-files/dynamips 
+Jan 03 17:18:44.835 GENERAL: working_dir=/home/guilherme/AC_Pottente/Projeto/project-files/dynamips
+Jan 03 17:18:44.835 HYPERVISOR: exec_cmd: ethsw create S1 
+Jan 03 17:18:46.935 HYPERVISOR: exec_cmd: nio create_udp udp-4152d5d1-aa7b-4ecd-8190-ed39ff1659cf 10063 127.0.0.1 10062 
+Jan 03 17:18:46.936 HYPERVISOR: exec_cmd: ethsw add_nio S1 udp-4152d5d1-aa7b-4ecd-8190-ed39ff1659cf 
+Jan 03 17:18:46.939 HYPERVISOR: exec_cmd: ethsw set_access_port S1 udp-4152d5d1-aa7b-4ecd-8190-ed39ff1659cf 1 
