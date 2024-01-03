@@ -1,0 +1,33 @@
+Jan 03 13:56:54.943 HYPERVISOR: Release 0.2.23-amd64/Linux (tag 2023010200)
+Jan 03 13:56:54.943 HYPERVISOR: Started on IP = 127.0.0.1, TCP port = 49249.
+Jan 03 13:56:54.952 HYPERVISOR: exec_cmd: hypervisor version 
+Jan 03 13:56:54.952 HYPERVISOR: exec_cmd: hypervisor working_dir /home/guilherme/AC_Pottente/Projeto/project-files/dynamips 
+Jan 03 13:56:54.952 GENERAL: working_dir=/home/guilherme/AC_Pottente/Projeto/project-files/dynamips
+Jan 03 13:56:54.953 HYPERVISOR: exec_cmd: hypervisor working_dir /home/guilherme/AC_Pottente/Projeto/project-files/dynamips/0f4a2558-732f-4b30-be5f-3a7868153b52 
+Jan 03 13:56:54.953 GENERAL: working_dir=/home/guilherme/AC_Pottente/Projeto/project-files/dynamips/0f4a2558-732f-4b30-be5f-3a7868153b52
+Jan 03 13:56:54.953 HYPERVISOR: exec_cmd: vm create RA2 5 c7200 
+Jan 03 13:56:54.953 VM: VM RA2 created.
+Jan 03 13:56:54.953 HYPERVISOR: exec_cmd: vm set_con_tcp_port RA2 5008 
+Jan 03 13:56:54.953 HYPERVISOR: exec_cmd: c7200 get_mac_addr RA2 
+Jan 03 13:56:54.954 HYPERVISOR: exec_cmd: vm get_status RA2 
+Jan 03 13:56:54.954 HYPERVISOR: exec_cmd: vm slot_add_binding RA2 0 0 C7200-IO-FE 
+Jan 03 13:56:54.954 HYPERVISOR: exec_cmd: vm set_disk0 RA2 0 
+Jan 03 13:56:54.954 HYPERVISOR: exec_cmd: vm get_status RA2 
+Jan 03 13:56:54.954 HYPERVISOR: exec_cmd: vm set_idle_pc RA2 0x62cc930c 
+Jan 03 13:56:54.955 HYPERVISOR: exec_cmd: vm set_ios RA2 /home/guilherme/GNS3/images/IOS/c7200-advipservicesk9-mz.152-4.S5.image 
+Jan 03 13:56:54.955 HYPERVISOR: exec_cmd: c7200 set_mac_addr RA2 ca05.128a.0000 
+Jan 03 13:56:54.955 HYPERVISOR: exec_cmd: vm set_nvram RA2 512 
+Jan 03 13:56:54.956 HYPERVISOR: exec_cmd: vm get_status RA2 
+Jan 03 13:56:54.956 HYPERVISOR: exec_cmd: vm slot_remove_binding RA2 0 0 
+Jan 03 13:56:54.956 HYPERVISOR: exec_cmd: vm get_status RA2 
+Jan 03 13:56:54.956 HYPERVISOR: exec_cmd: vm slot_add_binding RA2 0 0 C7200-IO-2FE 
+Jan 03 13:56:54.956 HYPERVISOR: exec_cmd: vm get_status RA2 
+Jan 03 13:56:54.956 HYPERVISOR: exec_cmd: vm slot_add_binding RA2 1 0 PA-2FE-TX 
+Jan 03 13:56:54.957 HYPERVISOR: exec_cmd: vm get_status RA2 
+Jan 03 13:56:54.957 HYPERVISOR: exec_cmd: vm slot_add_binding RA2 2 0 PA-2FE-TX 
+Jan 03 13:56:56.697 HYPERVISOR: exec_cmd: nio create_udp udp-96cdb076-9b69-4ec2-a80d-3b4519d644a9 10046 127.0.0.1 10047 
+Jan 03 13:56:56.909 HYPERVISOR: exec_cmd: vm slot_add_nio_binding RA2 1 1 udp-96cdb076-9b69-4ec2-a80d-3b4519d644a9 
+Jan 03 13:56:56.910 HYPERVISOR: exec_cmd: vm get_status RA2 
+Jan 03 13:56:57.408 HYPERVISOR: exec_cmd: nio create_udp udp-fd9f5a44-538d-4c14-8a82-ae355962de8f 10064 127.0.0.1 10065 
+Jan 03 13:56:57.409 HYPERVISOR: exec_cmd: vm slot_add_nio_binding RA2 0 0 udp-fd9f5a44-538d-4c14-8a82-ae355962de8f 
+Jan 03 13:56:57.410 HYPERVISOR: exec_cmd: vm get_status RA2 

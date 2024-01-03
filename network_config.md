@@ -51,3 +51,122 @@
 - Address: 10.2.2.2/24
 ###### LA3
 - Address: 10.2.3.3/24
+<!-------------------------------------------------------------------------------->
+
+## Lisbon
+
+##### f0/0
+- To router Aveiro
+
+##### f0/1
+- To router New York
+
+##### f1/0
+- To router RL1
+
+#### f0 1/1
+- To router RL2
+
+## RL1
+#### eth0
+- To router Lisbon
+
+#### eth1
+- To Client LA(A2)
+
+## RL2
+
+#### f1/1
+
+- To router Lisbon
+
+#### f0/0
+- To SME PoP S2
+
+
+
+
+<!-------------------------------------------------------------------------------->
+## Aveiro
+##### f0/0
+- To router Lisbon
+
+##### f0/1
+- To router Madrid
+
+##### f1/0
+- To router RA1
+
+##### f1/1
+- To router RA2
+
+
+## RA1
+#### eth0
+- To router Aveiro
+
+#### eth2
+- To Client LA(A1)
+
+#### eth1
+- To Client LB(B1)
+
+
+
+## RA2
+
+#### f1/1
+
+- To router Aveiro
+
+#### f0/0
+- To SME PoP S2
+
+<!-------------------------------------------------------------------------------->
+## New York
+
+##### f0/0
+- To router Madrid
+
+##### f0/1
+- To router Lisbon
+
+
+##### f1/0
+- To router RN1
+
+## RN1
+
+#### eth0
+- To Router New York
+
+### eth1
+- To Client LB(B3)
+
+### eth2
+- To Client LA(A3)
+
+<!-------------------------------------------------------------------------------->
+## Madrid
+
+##### f0/0
+- To router New York
+
+##### f0/1
+- To router Aveiro
+
+
+##### f1/1
+- To router RM1
+
+## RM1
+
+##### f0/0
+- To client S3
+
+#### f1/1
+- To router Madrid
+
+<!-------------------------------------------------------------------------------->
+
+

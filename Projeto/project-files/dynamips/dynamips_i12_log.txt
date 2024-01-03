@@ -1,0 +1,9 @@
+Jan 03 13:56:55.111 HYPERVISOR: Release 0.2.23-amd64/Linux (tag 2023010200)
+Jan 03 13:56:55.111 HYPERVISOR: Started on IP = 127.0.0.1, TCP port = 51089.
+Jan 03 13:56:55.121 HYPERVISOR: exec_cmd: hypervisor version 
+Jan 03 13:56:55.121 HYPERVISOR: exec_cmd: hypervisor working_dir /home/guilherme/AC_Pottente/Projeto/project-files/dynamips 
+Jan 03 13:56:55.121 GENERAL: working_dir=/home/guilherme/AC_Pottente/Projeto/project-files/dynamips
+Jan 03 13:56:55.121 HYPERVISOR: exec_cmd: ethsw create S3 
+Jan 03 13:56:57.482 HYPERVISOR: exec_cmd: nio create_udp udp-1574188b-ea34-4891-841d-f580b48efce8 10067 127.0.0.1 10066 
+Jan 03 13:56:57.482 HYPERVISOR: exec_cmd: ethsw add_nio S3 udp-1574188b-ea34-4891-841d-f580b48efce8 
+Jan 03 13:56:57.501 HYPERVISOR: exec_cmd: ethsw set_access_port S3 udp-1574188b-ea34-4891-841d-f580b48efce8 1 
