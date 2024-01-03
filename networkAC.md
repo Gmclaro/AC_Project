@@ -71,6 +71,7 @@ Tags: [[AC]]
 | f0/0 | Madrid |  | 10.0.0.0 | 10.0.0.7 | 10.0.0.1 | 29 |
 | f0/1 | Lisbon |  | 10.0.0.8 | 10.0.0.15 | 10.0.0.9 | 29 |
 | f1/0 | RN1 |  | 10.0.0.128 | 10.0.0.135 | 10.0.0.129 | 29 |
+| lo0 |  |  |  |  | 10.0.1.244 | 32 |
 
 ## Madrid
 | Interface | Destination | VLAN | Subnet | Broadcast | Address | Mask |
@@ -80,12 +81,13 @@ Tags: [[AC]]
 | f1/1 | RM1 |  | 10.0.0.136 | 10.0.0.143 | 10.0.0.137 | 29 |
 
 ## Lisbon
-| Interface | Destination | VLAN | Subnet    | Broadcast | Address   | Mask |
-| --------- | ----------- | ---- | --------- | --------- | --------- | ---- |
-| f0/0       | Aveiro      |      | 10.0.0.24 | 10.0.0.32 | 10.0.0.25 | 29   |
-| f0/1       | NewYork     |      | 10.0.0.8  | 10.0.0.15 | 10.0.0.10 | 29   |
-| f1/0          | RL1            |      | 10.0.0.144          | 10.0.0.151          | 10.0.0.145          | 29     |
-| f1/1       | RL2         |      | 10.0.0.152          | 10.0.0.159          | 10.0.0.153          | 29   |
+| Interface | Destination | VLAN | Subnet | Broadcast | Address | Mask |
+| ---- | ---- | ---- | ---- | ---- | ---- | ---- |
+| f0/0 | Aveiro |  | 10.0.0.24 | 10.0.0.32 | 10.0.0.25 | 29 |
+| f0/1 | NewYork |  | 10.0.0.8 | 10.0.0.15 | 10.0.0.10 | 29 |
+| f1/0 | RL1 |  | 10.0.0.144 | 10.0.0.151 | 10.0.0.145 | 29 |
+| f1/1 | RL2 |  | 10.0.0.152 | 10.0.0.159 | 10.0.0.153 | 29 |
+| lo0 |  |  |  |  | 10.0.1.246 | 32 |
 
 ## Aveiro
 | Interface | Destination | VLAN | Subnet    | Broadcast | Address   | Mask |
@@ -111,6 +113,7 @@ Tags: [[AC]]
 | ---- | ---- | ---- | ---- | ---- | ---- | ---- |
 | f1/1 | Madrid |  | 10.0.0.136 | 10.0.0.143 | 10.0.0.138 | 29 |
 | f0/0 | S3 |  | 10.0.3.0 | 10.0.3.255 | 10.0.3.2 | 24 |
+| lo0 |  |  |  |  | 10.0.1.252 | 32 |
 
 
 ## RL1
@@ -124,6 +127,7 @@ Tags: [[AC]]
 | ---- | ---- | ---- | ---- | ---- | ---- | ---- |
 | f1/1 | Lisbon |  | 10.0.0.152 | 10.0.0.159 | 10.0.0.154 | 29 |
 | f0/0 | S2 |  | 10.0.2.0 | 10.0.2.255 | 10.0.2.2 | 24 |
+| lo0 |  |  |  |  | 10.0.1.248 | 32 |
 
 ## RA1
 | Interface | Destination | VLAN | Subnet     | Broadcast  | Address    | Mask |
@@ -139,6 +143,7 @@ Tags: [[AC]]
 | ---- | ---- | ---- | ---- | ---- | ---- | ---- |
 | f1/1 | Aveiro |  | 10.0.0.168 | 10.0.0.175 | 10.0.0.170 | 29 |
 | f0/0 | S1 |  | 10.0.1.0 | 10.0.1.255 | 10.0.1.2 | 24 |
+| lo0 |  |  |  |  | 10.0.1.250 | 32 |
 
 ---
 # Configuration
@@ -148,6 +153,7 @@ Tags: [[AC]]
 ```
 !NewYork
 configure terminal
+mpls ip
 router ospf 1
 router-id 1.1.1.1
 ip cef
@@ -155,17 +161,26 @@ ip cef
 interface f0/0
 ip address 10.0.0.1 255.255.255.248
 ip ospf 1 area 0
+mpls ip
 no shutdown
 exit
 
 interface f0/1
 ip address 10.0.0.9 255.255.255.248
 ip ospf 1 area 0
+mpls ip
 no shutdown
 exit
 
 interface f1/0
 ip address 10.0.0.129 255.255.255.248
+ip ospf 1 area 0
+no shutdown
+mpls ip
+exit
+
+interface loopback0
+ip address 10.0.1.244 255.255.255.255
 ip ospf 1 area 0
 no shutdown
 exit
@@ -180,23 +195,27 @@ write
 configure terminal
 router ospf 1
 router-id 1.1.1.2
+mpls ip
 ip cef
 
 interface f0/0
 ip address 10.0.0.2 255.255.255.248
 ip ospf 1 area 0
+mpls ip
 no shutdown
 exit
 
 interface f0/1
 ip address 10.0.0.17 255.255.255.248
 ip ospf 1 area 0
+mpls ip
 no shutdown
 exit
 
 interface f1/1
 ip address 10.0.0.137 255.255.255.248
 ip ospf 1 area 0
+mpls ip
 no shutdown
 exit
 
@@ -210,29 +229,40 @@ write
 configure terminal
 router ospf 1
 router-id 1.1.1.3
+mpls ip
 ip cef
 
 
 interface f0/0
 ip address 10.0.0.25 255.255.255.248
 ip ospf 1 area 0
+mpls ip
 no shutdown
 exit
 
 interface f0/1
 ip address  10.0.0.10 255.255.255.248
 ip ospf 1 area 0
+mpls ip
 no shutdown
 exit
 
 interface f1/0
 ip address 10.0.0.145 255.255.255.248
 ip ospf 1 area 0
+mpls ip
 no shutdown
 exit
 
 interface f1/1
 ip address 10.0.0.153 255.255.255.248
+ip ospf 1 area 0
+mpls ip
+no shutdown
+exit
+
+interface loopback0
+ip address 10.0.1.246 255.255.255.255
 ip ospf 1 area 0
 no shutdown
 exit
@@ -247,29 +277,34 @@ write
 configure terminal
 router ospf 1
 router-id 1.1.1.4
+mpls ip
 ip cef
 
 interface f0/0
 ip address 10.0.0.26 255.255.255.248
 ip ospf 1 area 0
+mpls ip
 no shutdown
 exit
 
 interface f0/1
 ip address 10.0.0.18 255.255.255.248
 ip ospf 1 area 0
+mpls ip
 no shutdown
 exit
 
 interface f1/0
 ip address 10.0.0.161 255.255.255.248
 ip ospf 1 area 0
+mpls ip
 no shutdown
 exit
 
 interface f1/1
 ip address 10.0.0.169 255.255.255.248
 ip ospf 1 area 0
+mpls ip
 no shutdown
 exit
 
@@ -281,10 +316,30 @@ write
 ```
 !RM1
 configure terminal
+router ospf 1
+router-id 2.2.2.2
+mpls ip
+ip cef
+
 interface f1/1
 ip address 10.0.0.138 255.255.255.248
+ip ospf 1 area 0
+mpls ip
 no shutdown
 exit
+
+interface f0/0
+ip address 10.0.3.2 255.255.255.0
+no shutdown
+exit
+
+
+interface loopback0
+ip address 10.0.1.252 255.255.255.255
+ip ospf 1 area 0
+no shutdown
+exit
+
 end
 write
 ```
@@ -292,10 +347,29 @@ write
 ## RL2 - conf
 ```
 configure terminal
+router ospf 1
+router-id 3.3.3.3
+mpls ip
+ip cef
+
 interface f1/1
 ip address 10.0.0.154 255.255.255.248
+ip ospf 1 area 0
+mpls ip
 no shutdown
 exit
+
+interface f0/0
+ip address 10.0.2.2 255.255.255.0
+no shutdown
+exit
+
+interface loopback0
+ip address 10.0.1.248 255.255.255.255
+ip ospf 1 area 0
+no shutdown
+exit
+
 end
 write
 ```
@@ -304,10 +378,29 @@ write
 ```
 !RA2
 configure terminal
+router ospf 1
+router-id 4.4.4.4
+mpls ip
+ip cef
+
 interface f1/1
 ip address 10.0.0.170 255.255.255.248
+ip ospf 1 area 0
+mpls ip
 no shutdown
 exit
+
+interface f0/0
+ip address 10.0.1.2 255.255.255.0
+no shutdown
+exit
+
+interface loopback0
+ip address 10.0.1.250 255.255.255.255
+ip ospf 1 area 0
+no shutdown
+exit
+
 end
 write
 ```
