@@ -5,7 +5,7 @@ Tags: [[AC]]
 # networkAC
 
 ## Map of Content
-- **Network**
+- **[[#Network]]**
 	- [[#Clients]]
 		1. [[#SME]]
 		2. [[#LB]]
@@ -23,6 +23,8 @@ Tags: [[AC]]
 			4. [[#RL2]]
 			5. [[#RA1]]
 			6. [[#RA2]]
+- **[[#Configuration]]**
+	- 
 
 # Network
 ---
@@ -120,7 +122,7 @@ Tags: [[AC]]
 ## RA1
 | Interface | Destination | VLAN | Subnet     | Broadcast  | Address    | Mask |
 | --------- | ----------- | ---- | ---------- | ---------- | ---------- | ---- |
-| eth0      | Lisbon      |      | 10.0.0.160 | 10.0.0.167 | 10.0.0.162 | 29   |
+| eth0      | Aveiro      |      | 10.0.0.160 | 10.0.0.167 | 10.0.0.162 | 29   |
 | eth1      | LB1         | 10   | 10.10.0.0  | 10.10.0.255           | 10.10.0.2           | 24     |
 | eth1      | LB1         | 20   | 10.20.0.0           | 10.20.0.255           | 10.20.0.2           | 24     |
 | eth1      | LB1         | 30   | 10.30.0.0           | 10.30.0.255           | 10.30.0.2           | 24     |
@@ -129,6 +131,129 @@ Tags: [[AC]]
 ## RA2
 | Interface | Destination | VLAN | Subnet | Broadcast | Address | Mask |
 | ---- | ---- | ---- | ---- | ---- | ---- | ---- |
-| f1/1 | Lisbon |  | 10.0.0.168 | 10.0.0.175 | 10.0.0.170 | 29 |
+| f1/1 | Aveiro |  | 10.0.0.168 | 10.0.0.175 | 10.0.0.170 | 29 |
 | f0/0 | S1 |  | 10.0.1.0 | 10.0.1.255 | 10.0.1.2 | 24 |
 
+---
+# Configuration
+
+## NewYork
+
+```
+!NewYork
+configure terminal
+interface f0/0
+ip address 10.0.0.1 255.255.255.248
+no shutdown
+exit
+interface f0/1
+ip address 10.0.0.9 255.255.255.248
+no shutdown
+exit
+interface f1/0
+
+no shutdown
+exit
+end
+write
+```
+
+## Madrid
+```
+!Madrid
+configure terminal
+interface f0/0
+ip address 10.0.0.2 255.255.255.248
+no shutdown
+exit
+interface f0/1
+ip address 10.0.0.17 255.255.255.248
+no shutdown
+exit
+interface f1/1
+ip address 10.0.0.137 255.255.255.248
+no shutdown
+exit
+end
+write
+```
+
+## Lisbon
+```
+!Lisbon
+configure terminal
+interface f0/0
+ip address 10.0.0.25 255.255.255.248
+no shutdown
+exit
+interface f0/1
+no shutdown
+exit
+interface f1/0
+no shutdown
+exit
+interface f1/1
+ip address 10.0.0.153 255.255.255.248
+no shutdown
+exit
+end
+write
+```
+
+## Aveiro
+```
+!Aveiro
+configure terminal
+interface f0/0
+ip address 10.0.0.26 255.255.255.248
+no shutdown
+exit
+interface f0/1
+ip address 10.0.0.18 255.255.255.248
+no shutdown
+exit
+interface f1/0
+no shutdown
+exit
+interface f1/1
+ip address 10.0.0.169 255.255.255.248
+no shutdown
+exit
+end
+write
+```
+
+## RM1
+```
+!RM1
+configure terminal
+interface f1/1
+ip address 10.0.0.138 255.255.255.248
+no shutdown
+exit
+end
+write
+```
+
+## RL2
+```
+configure terminal
+interface f1/1
+ip address 10.0.0.154 255.255.255.248
+no shutdown
+exit
+end
+write
+```
+
+## RA2
+```
+!RA2
+configure terminal
+interface f1/1
+ip address 10.0.0.170 255.255.255.248
+no shutdown
+exit
+end
+write
+	```
