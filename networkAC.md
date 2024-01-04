@@ -488,7 +488,7 @@ sudo cp /opt/vyatta/etc/config.boot.default /config/config.boot
 reboot
 
 configure
-set interfaces ethernet eth1 address 10.0.0.136/29
+set interfaces ethernet eth0 address 10.0.0.146/29
 set interfaces dummy dum0 address 10.0.5.4/32
 set protocols ospf area 0 network 10.0.0.144/29
 set protocols ospf area 0 network 10.0.5.4/32
@@ -510,9 +510,9 @@ set interfaces vxlan vxlan101 source-address 10.0.5.4
 set interfaces vxlan vxlan101 vni 101
 set interfaces vxlan vxlan101 mtu 1500
 
-set interfaces bridge br101 address 10.2.2.2
+set interfaces bridge br101 address 10.2.2.2/16
 set interfaces bridge br101 description 'client la2'
-set interfaces bridge br101 member interface eth1
+set interfaces bridge br101 member interface eth2
 set interfaces bridge br101 member interface vxlan101
 
 commit
@@ -616,11 +616,18 @@ set protocols bgp peer-group evpn address-family l2vpn-evpn nexthop-self
 
 #####################################
 
-
+# LA
 set interfaces vxlan vxlan101 source-address 10.0.5.6
 set interfaces vxlan vxlan101 vni 101
 set interfaces vxlan vxlan101 mtu 1500
 
+set interfaces bridge br101 address 10.2.3.3
+set interfaces bridge br101 description 'client la3'
+set interfaces bridge br101 member interface eth2
+set interfaces bridge br101 member interface vxlan101
+
+
+# LB
 set interfaces vxlan vxlan110 vni 110
 set interfaces vxlan vxlan110 mtu 1500
 set interfaces vxlan vxlan110 remote 10.0.0.162
@@ -630,11 +637,6 @@ set interfaces vxlan vxlan120 remote 10.0.0.162
 set interfaces vxlan vxlan130 vni 130
 set interfaces vxlan vxlan130 mtu 1500
 set interfaces vxlan vxlan130 remote 10.0.0.162
-
-set interfaces bridge br101 address 10.2.3.3
-set interfaces bridge br101 description 'client la3'
-set interfaces bridge br101 member interface eth2
-set interfaces bridge br101 member interface vxlan101
 
 set interfaces bridge br110 member interface eth1.10
 set interfaces bridge br110 member interface vxlan110
