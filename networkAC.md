@@ -480,31 +480,34 @@ write
 ```
 
 ## RL1- conf
-```
+```bash
 sudo cp /opt/vyatta/etc/config.boot.default /config/config.boot
 reboot
 
 configure
-set interfaces ethernet eth1 address 10.0.0.136/26
-set interfaces dummy dum0 address 10.0.1.212/32 -> dummy
-set protocols ospf area 0 network 10.0.0.128/26 ->defines o que queres
-set protocols ospf area 0 network 10.0.1.212/32-> dummy
+set interfaces ethernet eth1 address 10.0.0.136/29
+set interfaces dummy dum0 address 10.0.5.4/32
+set protocols ospf area 0 network 10.0.0.144/29
+set protocols ospf area 0 network 10.0.5.4/32
 set system host-name RL1
 
 set protocols bgp system-as 33900
 
 set protocols bgp address-family l2vpn-evpn advertise-all-vni
-set protocols bgp parameters router-id 10.0.1.212 ->dummy
-set protocols bgp neighbor 10.0.1.208 peer-group evpn
+set protocols bgp parameters router-id 10.0.5.4
+set protocols bgp neighbor 10.0.5.2 peer-group evpn
 set protocols bgp peer-group evpn update-source dum0
 set protocols bgp peer-group evpn remote-as 33900
 set protocols bgp peer-group evpn address-family l2vpn-evpn nexthop-self
 
-set interfaces vxlan vxlan101 source-address 10.0.1.212
+####################
+
+
+set interfaces vxlan vxlan101 source-address 10.0.5.4
 set interfaces vxlan vxlan101 vni 101
 set interfaces vxlan vxlan101 mtu 1500
 
-set interfaces bridge br101 address 10.2.3.1/22
+set interfaces bridge br101 address 10.2.2.2
 set interfaces bridge br101 description 'client la2'
 set interfaces bridge br101 member interface eth1
 set interfaces bridge br101 member interface vxlan101
@@ -515,8 +518,8 @@ save
 
 ## RA1- conf
 
-```
-VyOS2 - AVEIRO
+```bash
+#VyOS2 - AVEIRO
 
 
 sudo cp /opt/vyatta/etc/config.boot.default /config/config.boot
@@ -524,9 +527,9 @@ reboot
 
 configure
 set interfaces ethernet eth0 address 10.0.0.162/29
-set interfaces dummy dum0 address 10.0.1.212/32 -> nao depende do loopback mas tem que ser mascara 32
-set protocols ospf area 0 network 10.0.0.128/26-> defines o que queres
-set protocols ospf area 0 network 10.0.1.212/32 -> ja se sabe
+set interfaces dummy dum0 address 10.0.5.2/32
+set protocols ospf area 0 network 10.0.0.160/29
+set protocols ospf area 0 network 10.0.5.2/32
 set system host-name RA1
 
 set interfaces ethernet eth1 vif 10
@@ -536,17 +539,27 @@ set interfaces ethernet eth1 vif 30
 set protocols bgp system-as 33900
 
 set protocols bgp address-family l2vpn-evpn advertise-all-vni
-set protocols bgp parameters router-id 10.0.1.212-> dummy
-set protocols bgp neighbor 10.0.1.208 peer-group evpn -> mesmo que os outros vyos
+set protocols bgp parameters router-id 10.0.5.2
+set protocols bgp neighbor 10.0.5.4 peer-group evpn
+set protocols bgp neighbor 10.0.5.6 peer-group evpn
 set protocols bgp peer-group evpn update-source dum0
 set protocols bgp peer-group evpn remote-as 33900
 set protocols bgp peer-group evpn address-family l2vpn-evpn nexthop-self
 set protocols bgp peer-group evpn address-family l2vpn-evpn route-reflector-client
 
-set interfaces vxlan vxlan101 source-address 10.0.1.212->dummy
+################
+# LA
+set interfaces vxlan vxlan101 source-address 10.0.5.2
 set interfaces vxlan vxlan101 vni 101
 set interfaces vxlan vxlan101 mtu 1500
 
+
+set interfaces bridge br101 address 10.2.3.1/22 -> mudar estes ips
+set interfaces bridge br101 description 'client la1'
+set interfaces bridge br101 member interface eth2
+set interfaces bridge br101 member interface vxlan101
+
+# LB
 set interfaces vxlan vxlan110 vni 110
 set interfaces vxlan vxlan110 mtu 1500
 set interfaces vxlan vxlan110 remote 10.0.0.66 -> mudar estes ips
@@ -556,11 +569,6 @@ set interfaces vxlan vxlan120 remote 10.0.0.66 -> mudar estes ips
 set interfaces vxlan vxlan130 vni 130
 set interfaces vxlan vxlan130 mtu 1500
 set interfaces vxlan vxlan130 remote 10.0.0.66 -> mudar estes ips
-
-set interfaces bridge br101 address 10.2.3.1/22 -> mudar estes ips
-set interfaces bridge br101 description 'client la1'
-set interfaces bridge br101 member interface eth2
-set interfaces bridge br101 member interface vxlan101
 
 set interfaces bridge br110 member interface eth1.10
 set interfaces bridge br110 member interface vxlan110
@@ -576,17 +584,17 @@ save
 
 ## RN1 - conf
 
-```
-Vyos2- New york
+```bash
+#Vyos2- New york
 
 sudo cp /opt/vyatta/etc/config.boot.default /config/config.boot
 reboot
 
 configure
 set interfaces ethernet eth0 address 10.0.0.130/29
-set interfaces dummy dum0 address 10.0.1.212/32 -> nao depende do loopback mas tem que ser mascara 32
-set protocols ospf area 0 network 10.0.0.128/26-> defines o que queres
-set protocols ospf area 0 network 10.0.1.212/32 -> ja se sabe
+set interfaces dummy dum0 address 10.0.5.6/32
+set protocols ospf area 0 network 10.0.0.128/29
+set protocols ospf area 0 network 10.0.5.6/32
 set system host-name RN1
 
 set interfaces ethernet eth1 vif 10
@@ -596,13 +604,17 @@ set interfaces ethernet eth1 vif 30
 set protocols bgp system-as 33900
 
 set protocols bgp address-family l2vpn-evpn advertise-all-vni
-set protocols bgp parameters router-id 10.0.1.212-> dummy
-set protocols bgp neighbor 10.0.1.208 peer-group evpn -> mesmo que os outros vyos
+set protocols bgp parameters router-id 10.0.5.6
+set protocols bgp neighbor 10.0.5.2 peer-group evpn
 set protocols bgp peer-group evpn update-source dum0
 set protocols bgp peer-group evpn remote-as 33900
 set protocols bgp peer-group evpn address-family l2vpn-evpn nexthop-self
 
-set interfaces vxlan vxlan101 source-address 10.0.1.212->dummy
+
+#####################################
+
+
+set interfaces vxlan vxlan101 source-address 10.0.5.6
 set interfaces vxlan vxlan101 vni 101
 set interfaces vxlan vxlan101 mtu 1500
 
