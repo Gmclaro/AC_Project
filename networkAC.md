@@ -557,7 +557,7 @@ set interfaces vxlan vxlan101 vni 101
 set interfaces vxlan vxlan101 mtu 1500
 
 
-set interfaces bridge br101 address 10.2.1.1
+set interfaces bridge br101 address 10.2.1.1/16
 set interfaces bridge br101 description 'client la1'
 set interfaces bridge br101 member interface eth2
 set interfaces bridge br101 member interface vxlan101
@@ -621,7 +621,7 @@ set interfaces vxlan vxlan101 source-address 10.0.5.6
 set interfaces vxlan vxlan101 vni 101
 set interfaces vxlan vxlan101 mtu 1500
 
-set interfaces bridge br101 address 10.2.3.3
+set interfaces bridge br101 address 10.2.3.3/16
 set interfaces bridge br101 description 'client la3'
 set interfaces bridge br101 member interface eth2
 set interfaces bridge br101 member interface vxlan101

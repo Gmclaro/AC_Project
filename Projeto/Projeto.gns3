@@ -537,38 +537,6 @@
             },
             {
                 "filters": {},
-                "link_id": "7c04dee9-aa45-45e7-a80c-fc8bee0ae00f",
-                "link_style": {},
-                "nodes": [
-                    {
-                        "adapter_number": 0,
-                        "label": {
-                            "rotation": 0,
-                            "style": "font-family: TypeWriter;font-size: 10.0;font-weight: bold;fill: #000000;fill-opacity: 1.0;",
-                            "text": "e1",
-                            "x": -4,
-                            "y": 16
-                        },
-                        "node_id": "c5ccd395-8562-4321-914a-2caa8b909208",
-                        "port_number": 1
-                    },
-                    {
-                        "adapter_number": 0,
-                        "label": {
-                            "rotation": 0,
-                            "style": "font-family: TypeWriter;font-size: 10.0;font-weight: bold;fill: #000000;fill-opacity: 1.0;",
-                            "text": "e0",
-                            "x": 72,
-                            "y": 29
-                        },
-                        "node_id": "daeaf1d6-12c3-4ec6-8890-57f3837d011c",
-                        "port_number": 0
-                    }
-                ],
-                "suspend": false
-            },
-            {
-                "filters": {},
                 "link_id": "e503330f-f06c-4278-85bd-590a5e212db4",
                 "link_style": {},
                 "nodes": [
@@ -1014,6 +982,38 @@
                     }
                 ],
                 "suspend": false
+            },
+            {
+                "filters": {},
+                "link_id": "66a68a28-1c0f-48ca-8f21-562c716ee463",
+                "link_style": {},
+                "nodes": [
+                    {
+                        "adapter_number": 0,
+                        "label": {
+                            "rotation": 0,
+                            "style": "font-family: TypeWriter;font-size: 10.0;font-weight: bold;fill: #000000;fill-opacity: 1.0;",
+                            "text": "e0",
+                            "x": 72,
+                            "y": 29
+                        },
+                        "node_id": "d85f8075-be5c-436c-9569-0e76ef2bbbd3",
+                        "port_number": 0
+                    },
+                    {
+                        "adapter_number": 0,
+                        "label": {
+                            "rotation": 0,
+                            "style": "font-family: TypeWriter;font-size: 10.0;font-weight: bold;fill: #000000;fill-opacity: 1.0;",
+                            "text": "e1",
+                            "x": -4,
+                            "y": 16
+                        },
+                        "node_id": "c5ccd395-8562-4321-914a-2caa8b909208",
+                        "port_number": 1
+                    }
+                ],
+                "suspend": false
             }
         ],
         "nodes": [
@@ -1295,9 +1295,9 @@
             },
             {
                 "compute_id": "local",
-                "console": null,
+                "console": 5043,
                 "console_auto_start": false,
-                "console_type": "none",
+                "console_type": "telnet",
                 "custom_adapters": [],
                 "first_port_name": "",
                 "height": 59,
@@ -1365,9 +1365,9 @@
             },
             {
                 "compute_id": "local",
-                "console": null,
+                "console": 5042,
                 "console_auto_start": false,
-                "console_type": "none",
+                "console_type": "telnet",
                 "custom_adapters": [],
                 "first_port_name": "",
                 "height": 59,
@@ -1435,9 +1435,9 @@
             },
             {
                 "compute_id": "local",
-                "console": null,
+                "console": 5044,
                 "console_auto_start": false,
-                "console_type": "none",
+                "console_type": "telnet",
                 "custom_adapters": [],
                 "first_port_name": "",
                 "height": 59,
@@ -1734,28 +1734,32 @@
                 "properties": {
                     "ports_mapping": [
                         {
+                            "ethertype": "",
                             "name": "Ethernet0",
                             "port_number": 0,
-                            "type": "access",
+                            "type": "dot1q",
                             "vlan": 1
                         },
                         {
+                            "ethertype": "",
                             "name": "Ethernet1",
                             "port_number": 1,
-                            "type": "access",
-                            "vlan": 1
+                            "type": "dot1q",
+                            "vlan": 10
                         },
                         {
+                            "ethertype": "",
                             "name": "Ethernet2",
                             "port_number": 2,
-                            "type": "access",
-                            "vlan": 1
+                            "type": "dot1q",
+                            "vlan": 20
                         },
                         {
+                            "ethertype": "",
                             "name": "Ethernet3",
                             "port_number": 3,
-                            "type": "access",
-                            "vlan": 1
+                            "type": "dot1q",
+                            "vlan": 30
                         },
                         {
                             "name": "Ethernet4",
@@ -1814,15 +1818,17 @@
                 "properties": {
                     "ports_mapping": [
                         {
+                            "ethertype": "",
                             "name": "Ethernet0",
                             "port_number": 0,
-                            "type": "access",
+                            "type": "dot1q",
                             "vlan": 1
                         },
                         {
+                            "ethertype": "",
                             "name": "Ethernet1",
                             "port_number": 1,
-                            "type": "access",
+                            "type": "dot1q",
                             "vlan": 1
                         },
                         {
@@ -1894,28 +1900,32 @@
                 "properties": {
                     "ports_mapping": [
                         {
+                            "ethertype": "",
                             "name": "Ethernet0",
                             "port_number": 0,
-                            "type": "access",
+                            "type": "dot1q",
                             "vlan": 1
                         },
                         {
+                            "ethertype": "",
                             "name": "Ethernet1",
                             "port_number": 1,
-                            "type": "access",
-                            "vlan": 1
+                            "type": "dot1q",
+                            "vlan": 10
                         },
                         {
+                            "ethertype": "",
                             "name": "Ethernet2",
                             "port_number": 2,
-                            "type": "access",
-                            "vlan": 1
+                            "type": "dot1q",
+                            "vlan": 20
                         },
                         {
+                            "ethertype": "",
                             "name": "Ethernet3",
                             "port_number": 3,
-                            "type": "access",
-                            "vlan": 1
+                            "type": "dot1q",
+                            "vlan": 30
                         },
                         {
                             "name": "Ethernet4",
@@ -2134,15 +2144,17 @@
                 "properties": {
                     "ports_mapping": [
                         {
+                            "ethertype": "",
                             "name": "Ethernet0",
                             "port_number": 0,
-                            "type": "access",
+                            "type": "dot1q",
                             "vlan": 1
                         },
                         {
+                            "ethertype": "",
                             "name": "Ethernet1",
                             "port_number": 1,
-                            "type": "access",
+                            "type": "dot1q",
                             "vlan": 1
                         },
                         {
@@ -2214,15 +2226,17 @@
                 "properties": {
                     "ports_mapping": [
                         {
+                            "ethertype": "",
                             "name": "Ethernet0",
                             "port_number": 0,
-                            "type": "access",
+                            "type": "dot1q",
                             "vlan": 1
                         },
                         {
+                            "ethertype": "",
                             "name": "Ethernet1",
                             "port_number": 1,
-                            "type": "access",
+                            "type": "dot1q",
                             "vlan": 1
                         },
                         {
@@ -2348,35 +2362,6 @@
                 "width": 72,
                 "x": 189,
                 "y": -166,
-                "z": 1
-            },
-            {
-                "compute_id": "local",
-                "console": 5018,
-                "console_auto_start": false,
-                "console_type": "telnet",
-                "custom_adapters": [],
-                "first_port_name": null,
-                "height": 59,
-                "label": {
-                    "rotation": 0,
-                    "style": "font-family: TypeWriter;font-size: 10.0;font-weight: bold;fill: #000000;fill-opacity: 1.0;",
-                    "text": "ClientA2",
-                    "x": 1,
-                    "y": -25
-                },
-                "locked": true,
-                "name": "ClientA2",
-                "node_id": "daeaf1d6-12c3-4ec6-8890-57f3837d011c",
-                "node_type": "vpcs",
-                "port_name_format": "Ethernet{0}",
-                "port_segment_size": 0,
-                "properties": {},
-                "symbol": ":/symbols/vpcs_guest.svg",
-                "template_id": "19021f99-e36f-394d-b4a1-8aaa902ab9cc",
-                "width": 65,
-                "x": -1082,
-                "y": -329,
                 "z": 1
             },
             {
@@ -2697,11 +2682,40 @@
                 "x": -1082,
                 "y": 270,
                 "z": 1
+            },
+            {
+                "compute_id": "local",
+                "console": 5018,
+                "console_auto_start": false,
+                "console_type": "telnet",
+                "custom_adapters": [],
+                "first_port_name": null,
+                "height": 59,
+                "label": {
+                    "rotation": 0,
+                    "style": "font-family: TypeWriter;font-size: 10.0;font-weight: bold;fill: #000000;fill-opacity: 1.0;",
+                    "text": "ClientA2",
+                    "x": 1,
+                    "y": -25
+                },
+                "locked": true,
+                "name": "ClientA2",
+                "node_id": "d85f8075-be5c-436c-9569-0e76ef2bbbd3",
+                "node_type": "vpcs",
+                "port_name_format": "Ethernet{0}",
+                "port_segment_size": 0,
+                "properties": {},
+                "symbol": ":/symbols/vpcs_guest.svg",
+                "template_id": "19021f99-e36f-394d-b4a1-8aaa902ab9cc",
+                "width": 65,
+                "x": -1082,
+                "y": -329,
+                "z": 1
             }
         ]
     },
     "type": "topology",
     "variables": null,
     "version": "2.2.44.1",
-    "zoom": 71
+    "zoom": 66
 }
