@@ -54,7 +54,7 @@ Tags: [[AC]]
 | LB1 | 30   | 10.30.0.0 | 10.30.0.255 | 10.30.0.1 | 24   |
 | LB3 | 10   | 10.10.0.0 | 10.10.0.255 | 10.10.0.3 | 24   |
 | LB3 | 20   | 10.20.0.0 | 10.20.0.255 | 10.20.0.3 | 24   |
-| LB3    | 30     | 10.30.0.0          | 10.30.0.255            | 10.30.0.03          | 24     |
+| LB3    | 30     | 10.30.0.0          | 10.30.0.255            | 10.30.0.3          | 24     |
 
 
 ## LA
@@ -183,6 +183,7 @@ interface f1/0
 ip address 10.0.0.129 255.255.255.248
 ip ospf 1 area 0
 no shutdown
+ip policy route-map VXLAN-UDP
 mpls ip
 exit
 
@@ -191,6 +192,12 @@ ip address 10.0.5.244 255.255.255.255
 ip ospf 1 area 0
 no shutdown
 exit
+
+ip access-list extended L101
+permit UDP any any eq 8472
+
+route-map VXLAN-UDP permit 10
+match ip address L101
 
 end
 write
@@ -259,6 +266,7 @@ ip address 10.0.0.145 255.255.255.248
 ip ospf 1 area 0
 mpls ip
 no shutdown
+ip policy route-map VXLAN-UDP
 exit
 
 interface f1/1
@@ -273,6 +281,12 @@ ip address 10.0.5.246 255.255.255.255
 ip ospf 1 area 0
 no shutdown
 exit
+
+ip access-list extended L101
+permit UDP any any eq 8472
+
+route-map VXLAN-UDP permit 10
+match ip address L101
 
 end
 write
@@ -306,6 +320,7 @@ ip address 10.0.0.161 255.255.255.248
 ip ospf 1 area 0
 mpls ip
 no shutdown
+ip policy route-map VXLAN-UDP
 exit
 
 interface f1/1
@@ -314,6 +329,13 @@ ip ospf 1 area 0
 mpls ip
 no shutdown
 exit
+
+
+ip access-list extended L101
+permit UDP any any eq 8472
+
+route-map VXLAN-UDP permit 10
+match ip address L101
 
 end
 write
