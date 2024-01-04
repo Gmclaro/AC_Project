@@ -397,7 +397,7 @@ no shutdown
 exit
 
 interface loopback0
-ip address 10.0.5.242 255.255.255.255
+ip address 10.0.5.250 255.255.255.255
 ip ospf 1 area 0
 no shutdown
 exit
