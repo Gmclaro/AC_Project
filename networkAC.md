@@ -321,6 +321,12 @@ router-id 2.2.2.2
 mpls ip
 ip cef
 
+ip vrf VPN-1
+rd 200:1
+route-target export 200:1
+route-target import 200:1
+exit
+
 interface f1/1
 ip address 10.0.0.138 255.255.255.248
 ip ospf 1 area 0
@@ -331,6 +337,8 @@ exit
 interface f0/0
 ip address 10.0.3.2 255.255.255.0
 no shutdown
+ip vrf forwarding VPN-1
+ip address 10.0.3.2 255.255.255.0
 exit
 
 
@@ -339,6 +347,21 @@ ip address 10.0.5.252 255.255.255.255
 ip ospf 1 area 0
 no shutdown
 exit
+
+router bgp 33900
+bgp router-id 10.10.10.10
+neighbor 10.0.5.248 remote-as 33900
+neighbor 10.0.5.248 update-source loopback0
+neighbor 10.0.5.250 remote-as 33900
+neighbor 10.0.5.250 update-source loopback0
+address-family vpnv4
+neighbor 10.0.5.248 activate
+neighbor 10.0.5.248 send-community both
+neighbor 10.0.5.250 activate
+neighbor 10.0.5.250 send-community both
+exit
+address-family ipv4 vrf VPN-1
+redistribute connected
 
 end
 write
@@ -353,6 +376,12 @@ router-id 3.3.3.3
 mpls ip
 ip cef
 
+ip vrf VPN-1
+rd 200:1
+route-target export 200:1
+route-target import 200:1
+exit
+
 interface f1/1
 ip address 10.0.0.154 255.255.255.248
 ip ospf 1 area 0
@@ -363,6 +392,8 @@ exit
 interface f0/0
 ip address 10.0.2.2 255.255.255.0
 no shutdown
+ip vrf forwarding VPN-1
+ip address 10.0.2.2 255.255.255.0
 exit
 
 interface loopback0
@@ -370,6 +401,21 @@ ip address 10.0.5.248 255.255.255.255
 ip ospf 1 area 0
 no shutdown
 exit
+
+router bgp 33900
+bgp router-id 10.10.10.11
+neighbor 10.0.5.252 remote-as 33900
+neighbor 10.0.5.252 update-source loopback0
+neighbor 10.0.5.250 remote-as 33900
+neighbor 10.0.5.250 update-source loopback0
+address-family vpnv4
+neighbor 10.0.5.252 activate
+neighbor 10.0.5.252 send-community both
+neighbor 10.0.5.250 activate
+neighbor 10.0.5.250 send-community both
+exit
+address-family ipv4 vrf VPN-1
+redistribute connected
 
 end
 write
@@ -384,6 +430,12 @@ router-id 4.4.4.4
 mpls ip
 ip cef
 
+ip vrf VPN-1
+rd 200:1
+route-target export 200:1
+route-target import 200:1
+exit
+
 interface f1/1
 ip address 10.0.0.170 255.255.255.248
 ip ospf 1 area 0
@@ -394,6 +446,8 @@ exit
 interface f0/0
 ip address 10.0.1.2 255.255.255.0
 no shutdown
+ip vrf forwarding VPN-1
+ip address 10.0.1.2 255.255.255.0
 exit
 
 interface loopback0
@@ -401,6 +455,21 @@ ip address 10.0.5.250 255.255.255.255
 ip ospf 1 area 0
 no shutdown
 exit
+
+router bgp 33900
+bgp router-id 10.10.10.12
+neighbor 10.0.5.252 remote-as 33900
+neighbor 10.0.5.252 update-source loopback0
+neighbor 10.0.5.248 remote-as 33900
+neighbor 10.0.5.248 update-source loopback0
+address-family vpnv4
+neighbor 10.0.5.252 activate
+neighbor 10.0.5.252 send-community both
+neighbor 10.0.5.248 activate
+neighbor 10.0.5.248 send-community both
+exit
+address-family ipv4 vrf VPN-1
+redistribute connected
 
 end
 write
