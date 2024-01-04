@@ -104,13 +104,14 @@ Tags: [[AC]]
 ## Outside Core
 
 ## RN1
-| Interface | Destination | VLAN | Subnet     | Broadcast  | Address    | Mask |
-| --------- | ----------- | ---- | ---------- | ---------- | ---------- | ---- |
-| eth0      | NewYork     |      | 10.0.0.128 | 10.0.0.135 | 10.0.0.130 | 29   |
-| eth1      | LB3         | 10   | 10.10.0.0           | 10.10.0.255           | 10.10.0.4           | 24     |
-| eth1      | LB3         | 20   | 10.20.0.0           | 10.20.0.255           | 10.20.0.4           | 24     |
-| eth1      | LB3         | 30   | 10.30.0.0           | 10.30.0.255           | 10.30.0.4           | 24     |
-| eth2      | LA3         |      | 10.2.0.0           | 10.2.255.255           | 10.2.3.4           | 16     |
+| Interface | Destination | VLAN | Subnet | Broadcast | Address | Mask |
+| ---- | ---- | ---- | ---- | ---- | ---- | ---- |
+| eth0 | NewYork |  | 10.0.0.128 | 10.0.0.135 | 10.0.0.130 | 29 |
+| eth1 | LB3 | 10 | 10.10.0.0 | 10.10.0.255 | 10.10.0.4 | 24 |
+| eth1 | LB3 | 20 | 10.20.0.0 | 10.20.0.255 | 10.20.0.4 | 24 |
+| eth1 | LB3 | 30 | 10.30.0.0 | 10.30.0.255 | 10.30.0.4 | 24 |
+| eth2 | LA3 |  | 10.2.0.0 | 10.2.255.255 | 10.2.3.4 | 16 |
+| dum0 |  |  |  |  | 10.0.5.6 | 32 |
 
 ## RM1
 | Interface | Destination | VLAN | Subnet | Broadcast | Address | Mask |
@@ -125,6 +126,7 @@ Tags: [[AC]]
 | ---- | ---- | ---- | ---- | ---- | ---- | ---- |
 | eth0 | Lisbon |  | 10.0.0.144 | 10.0.0.151 | 10.0.0.136 | 29 |
 | eth1 | LA2 |  | 10.2.0.0 | 10.2.255.255 | 10.2.2.4 | 16 |
+| dum0 |  |  |  |  | 10.0.5.4 | 32 |
 
 ## RL2
 | Interface | Destination | VLAN | Subnet | Broadcast | Address | Mask |
@@ -134,13 +136,14 @@ Tags: [[AC]]
 | lo0 |  |  |  |  | 10.0.5.248 | 32 |
 
 ## RA1
-| Interface | Destination | VLAN | Subnet     | Broadcast  | Address    | Mask |
-| --------- | ----------- | ---- | ---------- | ---------- | ---------- | ---- |
-| eth0      | Aveiro      |      | 10.0.0.160 | 10.0.0.167 | 10.0.0.162 | 29   |
-| eth1      | LB1         | 10   | 10.10.0.0  | 10.10.0.255           | 10.10.0.2           | 24     |
-| eth1      | LB1         | 20   | 10.20.0.0           | 10.20.0.255           | 10.20.0.2           | 24     |
-| eth1      | LB1         | 30   | 10.30.0.0           | 10.30.0.255           | 10.30.0.2           | 24     |
-| eth2      | LA1         |      | 10.2.0.0           | 10.2.255.255           | 10.2.1.4           | 16     |
+| Interface | Destination | VLAN | Subnet | Broadcast | Address | Mask |
+| ---- | ---- | ---- | ---- | ---- | ---- | ---- |
+| eth0 | Aveiro |  | 10.0.0.160 | 10.0.0.167 | 10.0.0.162 | 29 |
+| eth1 | LB1 | 10 | 10.10.0.0 | 10.10.0.255 | 10.10.0.2 | 24 |
+| eth1 | LB1 | 20 | 10.20.0.0 | 10.20.0.255 | 10.20.0.2 | 24 |
+| eth1 | LB1 | 30 | 10.30.0.0 | 10.30.0.255 | 10.30.0.2 | 24 |
+| eth2 | LA1 |  | 10.2.0.0 | 10.2.255.255 | 10.2.1.4 | 16 |
+| dum0 |  |  |  |  | 10.0.5.2 | 32 |
 
 ## RA2
 | Interface | Destination | VLAN | Subnet | Broadcast | Address | Mask |
@@ -500,8 +503,8 @@ set protocols bgp peer-group evpn update-source dum0
 set protocols bgp peer-group evpn remote-as 33900
 set protocols bgp peer-group evpn address-family l2vpn-evpn nexthop-self
 
-####################
 
+#LA2
 
 set interfaces vxlan vxlan101 source-address 10.0.5.4
 set interfaces vxlan vxlan101 vni 101
@@ -554,7 +557,7 @@ set interfaces vxlan vxlan101 vni 101
 set interfaces vxlan vxlan101 mtu 1500
 
 
-set interfaces bridge br101 address 10.2.3.1/22 -> mudar estes ips
+set interfaces bridge br101 address 10.2.1.1
 set interfaces bridge br101 description 'client la1'
 set interfaces bridge br101 member interface eth2
 set interfaces bridge br101 member interface vxlan101
@@ -562,13 +565,13 @@ set interfaces bridge br101 member interface vxlan101
 # LB
 set interfaces vxlan vxlan110 vni 110
 set interfaces vxlan vxlan110 mtu 1500
-set interfaces vxlan vxlan110 remote 10.0.0.66 -> mudar estes ips
+set interfaces vxlan vxlan110 remote 10.0.0.130
 set interfaces vxlan vxlan120 vni 120
 set interfaces vxlan vxlan120 mtu 1500
-set interfaces vxlan vxlan120 remote 10.0.0.66 -> mudar estes ips
+set interfaces vxlan vxlan120 remote 10.0.0.130
 set interfaces vxlan vxlan130 vni 130
 set interfaces vxlan vxlan130 mtu 1500
-set interfaces vxlan vxlan130 remote 10.0.0.66 -> mudar estes ips
+set interfaces vxlan vxlan130 remote 10.0.0.130
 
 set interfaces bridge br110 member interface eth1.10
 set interfaces bridge br110 member interface vxlan110
@@ -620,15 +623,15 @@ set interfaces vxlan vxlan101 mtu 1500
 
 set interfaces vxlan vxlan110 vni 110
 set interfaces vxlan vxlan110 mtu 1500
-set interfaces vxlan vxlan110 remote 10.0.0.66 -> mudar estes ips
+set interfaces vxlan vxlan110 remote 10.0.0.162
 set interfaces vxlan vxlan120 vni 120
 set interfaces vxlan vxlan120 mtu 1500
-set interfaces vxlan vxlan120 remote 10.0.0.66 -> mudar estes ips
+set interfaces vxlan vxlan120 remote 10.0.0.162
 set interfaces vxlan vxlan130 vni 130
 set interfaces vxlan vxlan130 mtu 1500
-set interfaces vxlan vxlan130 remote 10.0.0.66 -> mudar estes ips
+set interfaces vxlan vxlan130 remote 10.0.0.162
 
-set interfaces bridge br101 address 10.2.3.1/22 -> mudar estes ips
+set interfaces bridge br101 address 10.2.3.3
 set interfaces bridge br101 description 'client la3'
 set interfaces bridge br101 member interface eth2
 set interfaces bridge br101 member interface vxlan101
