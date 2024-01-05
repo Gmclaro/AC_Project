@@ -454,9 +454,9 @@ mpls ip
 ip cef
 
 ip vrf VPN-1
-rd 200:1
-route-target export 200:1
-route-target import 200:1
+rd 33900:1
+route-target export 33900:1
+route-target import 33900:1
 exit
 
 interface f1/1
@@ -509,9 +509,9 @@ mpls ip
 ip cef
 
 ip vrf VPN-1
-rd 200:1
-route-target export 200:1
-route-target import 200:1
+rd 33900:1
+route-target export 33900:1
+route-target import 33900:1
 exit
 
 interface f1/1
@@ -563,9 +563,9 @@ mpls ip
 ip cef
 
 ip vrf VPN-1
-rd 200:1
-route-target export 200:1
-route-target import 200:1
+rd 33900:1
+route-target export 33900:1
+route-target import 33900:1
 exit
 
 interface f1/1
