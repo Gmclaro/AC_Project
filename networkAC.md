@@ -94,12 +94,13 @@ Tags: [[AC]]
 | lo0 |  |  |  |  | 10.0.5.246 | 32 |
 
 ## Aveiro
-| Interface | Destination | VLAN | Subnet    | Broadcast | Address   | Mask |
-| --------- | ----------- | ---- | --------- | --------- | --------- | ---- |
-| f0/0       | Lisbon      |      | 10.0.0.24 | 10.0.0.32 | 10.0.0.26 | 29   |
-| f0/1       | Madrid     |      | 10.0.0.16  | 10.0.0.23 | 10.0.0.18 | 29   |
-| f1/0          | RA1            |      | 10.0.0.160          | 10.0.0.167          | 10.0.0.161          | 29     |
-| f1/1       | RA2         |      | 10.0.0.168          | 10.0.0.175          | 10.0.0.169          | 29   |
+| Interface | Destination | VLAN | Subnet | Broadcast | Address | Mask |
+| ---- | ---- | ---- | ---- | ---- | ---- | ---- |
+| f0/0 | Lisbon |  | 10.0.0.24 | 10.0.0.32 | 10.0.0.26 | 29 |
+| f0/1 | Madrid |  | 10.0.0.16 | 10.0.0.23 | 10.0.0.18 | 29 |
+| f1/0 | RA1 |  | 10.0.0.160 | 10.0.0.167 | 10.0.0.161 | 29 |
+| f1/1 | RA2 |  | 10.0.0.168 | 10.0.0.175 | 10.0.0.169 | 29 |
+| lo0 |  |  |  |  | 10.0.5.242 | 32 |
 
 ## Outside Core
 
@@ -165,11 +166,19 @@ router ospf 1
 router-id 1.1.1.1
 ip cef
 
+mpls traffic-eng tunnels
+
+router ospf 1
+mpls traffic-eng area 0
+mpls traffic-eng router-id loopback0
+
 interface f0/0
 ip address 10.0.0.1 255.255.255.248
 ip ospf 1 area 0
 mpls ip
 no shutdown
+mpls traffic-eng tunnels
+ip rsvp bandwidth 10000 10000
 exit
 
 interface f0/1
@@ -177,6 +186,8 @@ ip address 10.0.0.9 255.255.255.248
 ip ospf 1 area 0
 mpls ip
 no shutdown
+mpls traffic-eng tunnels
+ip rsvp bandwidth 10000 10000
 exit
 
 interface f1/0
@@ -192,6 +203,25 @@ ip address 10.0.5.244 255.255.255.255
 ip ospf 1 area 0
 no shutdown
 exit
+
+int Tunnel1
+ip unnumbered loopback0
+tunnel destination 10.0.5.242
+tunnel mode mpls traffic-eng
+tunnel mpls traffic-eng bandwidth 10000
+tunnel mpls traffic-eng path-option 1 explicit name path1
+tunnel mpls traffic-eng path-option 2 explicit name path2
+exit
+
+ip explicit-path name path1 enable
+next-address 10.0.0.2
+next-address 10.0.0.18
+
+ip explicit-path name path2 enable
+next-address 10.0.0.10
+next-address 10.0.0.26
+
+set interface Tunnel1
 
 ip access-list extended L101
 permit UDP any any eq 8472
@@ -212,11 +242,19 @@ router-id 1.1.1.2
 mpls ip
 ip cef
 
+mpls traffic-eng tunnels
+
+router ospf 1
+mpls traffic-eng router-id loopback0
+mpls traffic-eng area 0
+
 interface f0/0
 ip address 10.0.0.2 255.255.255.248
 ip ospf 1 area 0
 mpls ip
 no shutdown
+mpls traffic-eng tunnels
+ip rsvp bandwidth 10000 10000
 exit
 
 interface f0/1
@@ -224,6 +262,8 @@ ip address 10.0.0.17 255.255.255.248
 ip ospf 1 area 0
 mpls ip
 no shutdown
+mpls traffic-eng tunnels
+ip rsvp bandwidth 10000 10000
 exit
 
 interface f1/1
@@ -246,12 +286,19 @@ router-id 1.1.1.3
 mpls ip
 ip cef
 
+mpls traffic-eng tunnels
+
+router ospf 1
+mpls traffic-eng router-id loopback0
+mpls traffic-eng area 0
 
 interface f0/0
 ip address 10.0.0.25 255.255.255.248
 ip ospf 1 area 0
 mpls ip
 no shutdown
+mpls traffic-eng tunnels
+ip rsvp bandwidth 10000 10000
 exit
 
 interface f0/1
@@ -259,6 +306,8 @@ ip address  10.0.0.10 255.255.255.248
 ip ospf 1 area 0
 mpls ip
 no shutdown
+mpls traffic-eng tunnels
+ip rsvp bandwidth 10000 10000
 exit
 
 interface f1/0
@@ -301,11 +350,19 @@ router-id 1.1.1.4
 mpls ip
 ip cef
 
+mpls traffic-eng tunnels
+
+router ospf 1
+mpls traffic-eng router-id Loopback0
+mpls traffic-eng area 0
+
 interface f0/0
 ip address 10.0.0.26 255.255.255.248
 ip ospf 1 area 0
 mpls ip
 no shutdown
+mpls traffic-eng tunnels
+ip rsvp bandwidth 10000 10000
 exit
 
 interface f0/1
@@ -313,6 +370,8 @@ ip address 10.0.0.18 255.255.255.248
 ip ospf 1 area 0
 mpls ip
 no shutdown
+mpls traffic-eng tunnels
+ip rsvp bandwidth 10000 10000
 exit
 
 interface f1/0
@@ -330,6 +389,30 @@ mpls ip
 no shutdown
 exit
 
+interface loopback0
+ip address 10.0.5.242 255.255.255.255
+ip ospf 1 area 0
+no shutdown
+exit
+
+int Tunnel1
+ip unnumbered loopback0
+tunnel destination 10.0.5.244
+tunnel mode mpls traffic-eng
+tunnel mpls traffic-eng bandwidth 10000
+tunnel mpls traffic-eng path-option 1 explicit name path1
+tunnel mpls traffic-eng path-option 2 explicit name path2
+exit
+
+ip explicit-path name path1 enable
+next-address 10.0.0.17
+next-address 10.0.0.1
+
+ip explicit-path name path2 enable
+next-address 10.0.0.25
+next-address 10.0.0.9
+
+set interface Tunnel1
 
 ip access-list extended L101
 permit UDP any any eq 8472
